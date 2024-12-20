@@ -74,7 +74,7 @@ wgs84_2aed_laea <- function (data, longitude, latitude, which = "ED") {
                        crs = WGS84)
 
   # Projecting points
-  cent <- apply(data[, c(longitude, latitude)], 2, mean)
+  cent <- apply(data[, c(longitude, latitude)], 2, mean, na.rm=TRUE)
   ini <- ifelse(which[1] == "ED", "+proj=aeqd", "+proj=laea")
   prj <- terra::crs(paste0(ini, " +lat_0=", cent[2], " +lon_0=", cent[1],
                         " +x_0=0 +y_0=0 +ellps=WGS84 +datum=WGS84 +units=m +no_defs"))
