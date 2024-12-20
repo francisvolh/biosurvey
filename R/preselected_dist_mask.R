@@ -160,7 +160,7 @@ preselected_dist_mask <- function(master, expected_points, space,
     if (use_blocks == TRUE) {
       pre <- data.frame(data[data$Block %in% pre$Block, ])
     }
-    sppre <- terra::vect(pre, geom = c(x = variable_1, y = variable_2),
+    sppre <- terra::vect(pre[complete.cases(pre),], geom = c(x = variable_1, y = variable_2),
                          crs = terra::crs("+init=epsg:4326"))
     maskp <- suppressWarnings(terra::buffer(sppre, width = dist * 1000,
                                             quadsegs = 100))
